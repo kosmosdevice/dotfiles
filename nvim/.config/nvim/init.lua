@@ -34,6 +34,11 @@ map({ 'n', 'v', 'i' }, "<Right>", "<cmd>echo 'No right for you'<CR>")
 map({ 'n', 'v', 'i' }, "<Up>", "<cmd>echo 'No up for you'<CR>")
 map({ 'n', 'v', 'i' }, "<Down>", "<cmd>echo 'No down for you'<CR>")
 
+map('n', '<leader>dl', function()
+    vim.diagnostic.setqflist()
+    vim.cmd('copen')
+end, { desc = 'Show all diagnostics' })
+
 -- Keep visual selection after indenting
 map('v', '>', '>gv')
 map('v', '<', '<gv')
@@ -121,7 +126,7 @@ require('mason-tool-installer').setup {
         'typescript-language-server',
         'yaml-language-server',
     },
-    auto_update = false,
+    auto_update = true,
 }
 
 require "mason".setup()
