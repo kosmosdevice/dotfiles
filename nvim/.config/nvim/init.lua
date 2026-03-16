@@ -39,6 +39,11 @@ map('n', '<leader>dl', function()
     vim.cmd('copen')
 end, { desc = 'Show all diagnostics' })
 
+map('n', '<leader>gt', function()
+    vim.cmd('split | terminal')
+    vim.cmd('resize 15')
+end, { desc = 'Open terminal' })
+
 -- Keep visual selection after indenting
 map('v', '>', '>gv')
 map('v', '<', '<gv')
