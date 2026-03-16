@@ -12,8 +12,8 @@ Personal configuration files managed with [GNU Stow](https://www.gnu.org/softwar
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+git clone git@github.com:kosmosdevice/dotfiles.git
+cd dotfiles
 ```
 
 Symlink configurations using Stow:
