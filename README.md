@@ -1,8 +1,8 @@
-[Screenshot](screen.png)
-
 # Dotfiles
 
 Personal configuration files managed with [GNU Stow](https://www.gnu.org/software/stow/).
+
+<img src="screenshot.png"/> <br>
 
 ## Requirements
 
