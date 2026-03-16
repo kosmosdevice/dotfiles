@@ -51,6 +51,7 @@ map('v', '<', '<gv')
 -- LSP
 map('n', '<leader>lf', vim.lsp.buf.format)
 map('n', '<leader>rn', vim.lsp.buf.rename)
+
 vim.lsp.enable({
     "bashls",
     "clangd",
