@@ -118,9 +118,9 @@ require('mason-tool-installer').setup {
     ensure_installed = {
         'ruff',
         'angular-language-server',
-        'stylua',
         'basedpyright',
         'bash-language-server',
+        'lua-language-server',
         'clangd',
         'csharpier',
         'html-lsp',
@@ -135,7 +135,11 @@ require('mason-tool-installer').setup {
 
 require "mason".setup()
 
-require "oil".setup()
+require "oil".setup({
+    view_options = {
+        show_hidden = true,
+    },
+})
 map('n', '<leader>e', ":Oil<CR>")
 
 require('telescope').setup({
