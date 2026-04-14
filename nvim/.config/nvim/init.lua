@@ -13,6 +13,7 @@ vim.o.wrap = false
 vim.o.guicursor = ""
 vim.o.termguicolors = true
 vim.o.scrolloff = 8
+vim.o.sidescrolloff = 8
 vim.o.updatetime = 50
 vim.o.winborder = "rounded"
 vim.o.signcolumn = "no"
