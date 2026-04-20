@@ -130,6 +130,7 @@ require('mason-tool-installer').setup {
         'omnisharp',
         'typescript-language-server',
         'yaml-language-server',
+        'graphql-language-service-cli',
     },
     auto_update = true,
 }
