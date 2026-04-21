@@ -50,7 +50,9 @@ map('v', '>', '>gv')
 map('v', '<', '<gv')
 
 -- LSP
-map('n', '<leader>lf', vim.lsp.buf.format)
+map('n', '<leader>lf', function()
+    require('conform').format({ async = false, lsp_format = 'fallback' })
+end, { desc = 'Format buffer' })
 map('n', '<leader>rn', vim.lsp.buf.rename)
 
 vim.lsp.enable({
@@ -64,6 +66,8 @@ vim.lsp.enable({
     "marksman",
     "omnisharp",
     "angularls",
+    "html",
+    "graphql",
 })
 vim.lsp.config("yamlls", {
     settings = {
@@ -112,6 +116,24 @@ vim.pack.add({
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-telescope/telescope.nvim",            branch = "0.1.x" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+    { src = "https://github.com/stevearc/conform.nvim" },
+})
+
+-- Formatters
+require('conform').setup({
+    formatters_by_ft = {
+        graphql = { 'prettier' },
+        javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        html = { 'prettier' },
+        css = { 'prettier' },
+        json = { 'prettier' },
+        yaml = { 'prettier' },
+        markdown = { 'prettier' },
+        lua = { 'stylua' },
+    },
 })
 
 -- Mason
@@ -131,6 +153,8 @@ require('mason-tool-installer').setup {
         'typescript-language-server',
         'yaml-language-server',
         'graphql-language-service-cli',
+        'prettier',
+        'stylua',
     },
     auto_update = true,
 }
