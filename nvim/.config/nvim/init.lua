@@ -27,6 +27,10 @@ map('n', '<leader>o', ':update<CR> :source<CR>')
 map('n', '<leader>w', ':write<CR>')
 map('n', '<leader>q', ':quit<CR>')
 
+-- Buffer cycling
+map('n', '<leader>bn', ':bnext<CR>', { desc = 'Next buffer' })
+map('n', '<leader>bp', ':bprevious<CR>', { desc = 'Previous buffer' })
+
 map({ 'n', 'v' }, '<leader>y', '"+y"')
 map('n', '<leader>y', '"+Y"')
 
