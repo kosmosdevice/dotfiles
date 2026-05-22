@@ -133,6 +133,7 @@ require("conform").setup({
 		typescript = { "prettier" },
 		typescriptreact = { "prettier" },
 		html = { "prettier" },
+		htmlangular = { "prettier" },
 		css = { "prettier" },
 		json = { "prettier" },
 		yaml = { "prettier" },
