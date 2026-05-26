@@ -31,6 +31,10 @@ map("n", "<leader>q", ":quit<CR>")
 map("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
 
+-- Window cycling
+map("n", "<leader>wn", "<C-w>w", { desc = "Next window" })
+map("n", "<leader>wp", "<C-w>W", { desc = "Previous window" })
+
 map({ "n", "v" }, "<leader>y", '"+y"')
 map("n", "<leader>y", '"+Y"')
 
