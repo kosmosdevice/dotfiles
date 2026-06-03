@@ -154,7 +154,6 @@ require("mason-tool-installer").setup({
 		"roslyn",
 		"tree-sitter-cli",
 		"html-lsp",
-		"htmlbeautifier",
 		"marksman",
 		"typescript-language-server",
 		"yaml-language-server",
