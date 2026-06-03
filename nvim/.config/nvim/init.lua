@@ -75,7 +75,6 @@ vim.lsp.enable({
 	"angularls",
 	"html",
 	"graphql",
-	"omnisharp",
 })
 vim.lsp.config("yamlls", {
 	settings = {
@@ -91,18 +90,6 @@ vim.lsp.config("lua_ls", {
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true),
 			},
-		},
-	},
-})
-vim.lsp.config("omnisharp", {
-	settings = {
-		FormattingOptions = {
-			EnableEditorConfigSupport = true,
-			IndentationSize = 4,
-			TabSize = 4,
-		},
-		RoslynExtensionsOptions = {
-			EnableAnalyzersSupport = true,
 		},
 	},
 })
@@ -125,6 +112,9 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim", branch = "0.1.x" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/seblyng/roslyn.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/tris203/tree-sitter-razor" },
 })
 
 -- Formatters
@@ -144,6 +134,11 @@ require("conform").setup({
 		markdown = { "prettier" },
 		lua = { "stylua" },
 	},
+	formatters = {
+		csharpier = {
+			args = { "format", "--write-stdout", "--no-cache", "--stdin-path", "$FILENAME" },
+		},
+	},
 })
 
 -- Mason
@@ -156,7 +151,8 @@ require("mason-tool-installer").setup({
 		"lua-language-server",
 		"clangd",
 		"csharpier",
-		"omnisharp",
+		"roslyn-language-server",
+		"tree-sitter-cli",
 		"html-lsp",
 		"htmlbeautifier",
 		"marksman",
@@ -168,8 +164,43 @@ require("mason-tool-installer").setup({
 	},
 	auto_update = true,
 })
+require("mason").setup({})
 
-require("mason").setup()
+-- Roslyn
+require("roslyn").setup({})
+
+-- Treesitter
+require("nvim-treesitter").install({
+	"c_sharp",
+	"razor",
+	"html",
+	"lua",
+	"vim",
+	"vimdoc",
+	"bash",
+	"python",
+	"javascript",
+	"typescript",
+	"tsx",
+	"css",
+	"json",
+	"yaml",
+	"markdown",
+	"markdown_inline",
+	"graphql",
+	"c",
+	"cpp",
+	"query",
+})
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(args)
+		local ft = vim.bo[args.buf].filetype
+		local lang = vim.treesitter.language.get_lang(ft)
+		if lang and pcall(vim.treesitter.start, args.buf, lang) then
+			vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end
+	end,
+})
 
 require("oil").setup({
 	view_options = {
