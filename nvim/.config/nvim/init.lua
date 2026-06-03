@@ -151,7 +151,7 @@ require("mason-tool-installer").setup({
 		"lua-language-server",
 		"clangd",
 		"csharpier",
-		"roslyn-language-server",
+		"roslyn",
 		"tree-sitter-cli",
 		"html-lsp",
 		"htmlbeautifier",
@@ -164,7 +164,12 @@ require("mason-tool-installer").setup({
 	},
 	auto_update = true,
 })
-require("mason").setup({})
+require("mason").setup({
+	registries = {
+		"github:mason-org/mason-registry",
+		"github:Crashdummyy/mason-registry",
+	},
+})
 
 -- Roslyn
 require("roslyn").setup({})
